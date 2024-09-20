@@ -54,3 +54,11 @@ Crear tres macros en C
 ---
 
 ### Ejercicio 3
+
+---
+
+### Ejercicio SDK
+
+Cambié el puerto E9 por el puerto B12: se cambia *BOARD_INITPINS_LED_RED_GPIO* que era antes *GPIOE* por *GPIOB* y se cambia *BOARD_INITPINS_LED_RED_PORT* que era antes *PORTE* por *PORTB*, además se cambió *BOARD_INITPINS_LED_RED_PIN* que era antes *9U* por *12U*.
+
+En el clock control (línea 66 de pin.mux.c) se cambió *CLOCK_EnableClock(kCLOCK_PortE)* por *CLOCK_EnableClock(kCLOCK_PortB)*.
