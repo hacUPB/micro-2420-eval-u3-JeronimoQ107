@@ -109,11 +109,7 @@ Se diseño el diagrama de estados en base a una máquina de Mealy que posee 3 es
 
 En el siguiente video se puede apreciar el funcionamiento del PWM en el microcontrolador utilizando el PIN C10.
 
-<div align="center">
-    <video src="./IMG/IMG_5970.MP4" alt="Video de LEDs" controls width="600">
-        Tu navegador no soporta videos HTML5.
-    </video>
-</div>
+(El video se encuentra en la carpeta IMG de este mismo repositorio)
 
 ### Implementación de la técnica de multiplexación
 
