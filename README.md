@@ -62,3 +62,63 @@ Crear tres macros en C
 Cambié el puerto E9 por el puerto B12: se cambia *BOARD_INITPINS_LED_RED_GPIO* que era antes *GPIOE* por *GPIOB* y se cambia *BOARD_INITPINS_LED_RED_PORT* que era antes *PORTE* por *PORTB*, además se cambió *BOARD_INITPINS_LED_RED_PIN* que era antes *9U* por *12U*.
 
 En el clock control (línea 66 de pin.mux.c) se cambió *CLOCK_EnableClock(kCLOCK_PortE)* por *CLOCK_EnableClock(kCLOCK_PortB)*.
+
+
+## Proyecto - Encendido de un LED usando un teclado 4x4
+
+Se usará el microcontrolador para controlar la intensidad de un LED mediante un teclado matricial y una señal PWM. Se implementa la técnica de multiplexación para leer el teclado, una máquina de estados finitos para gestionar el flujo del programa, y el PWM del módulo FTM (FlexTimer Module) para variar el brillo del LED en función del ciclo útil, que el usuario puede ser ajustado ingresando valores entre 1% y 99%.
+
+### Diagrama de estados
+
+---
+
+Se diseño el diagrama de estados en base a una máquina de Mealy que posee 3 estados: <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">ESTADO INICIAL</span>, <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">PWM ACTIVADO</span> Y <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">AJUSTE PWM</span>.
+
+<div align="center">
+    <img src="./IMG/DiagramaEstados.svg" alt="imagen leds" />
+</div>
+
+**Funcionamiento**
+
+**Estados:**
+
+- **Estado Inicial:** Aquí el sistema está esperando una entrada del usuario. El LED está apagado y el PWM no está activo.
+
+  **Transición:**
+  - Si se presiona una tecla diferente de 'A', el sistema permanece en el estado inicial. La salida es el ciclo útil del PWM, que en este caso es 0.
+  - Si se presiona 'A', el sistema pasa al estado de PWM Activado. La salida es 0.
+
+- **PWM Activado:** En este estado, el PWM está funcionando, y el LED varía su intensidad según el ciclo útil actual $X_n$
+
+  **Transición:**
+  - Presionar la tecla 'B' regresa al estado Inicial y el PWM se apaga. La salida es 0.
+  - Presionar un nuevo numero, es decir, definir un nuevo ciclo útil $X_{n+1}$, ocasiona que se pase al estado Ajuste PWM. La salida es el ciclo útil actual $X_n$.
+  - Presionar 'A', 'C' o 'D' en este estado no cambia nada, se queda en PWM Activado con el mismo ciclo útil. La salida es el ciclo útil actual $X_n$.
+
+- **Ajuste PWM:** Aquí el usuario puede ajustar el ciclo útil del PWM para controlar la intensidad del LED.
+
+  **Transición:**
+  - Presionar 'D' confirma el nuevo ciclo útil $X_{n+1}$ y vuelve al estado PWM Activado. La salida es el nuevo ciclo útil $X_{n+1}$.
+  - Presionar 'C' descarta el cambio y mantiene el ciclo actual $X_n$, regresando también a PWM Activado. La salida es el ciclo útil actual $X_n$.
+  - Si se presiona 'A' o se ingresa el nuevo ciclo útil $X_{n+1}$, el sistema vuelve al estado Ajuste PWM para seguir haciendo cambios. La salida es el ciclo útil actual $X_n$.
+  - Presionar 'B' apaga el PWM y regresa al estado Inicial. La salida es 0.
+
+### Funcionamiento del PWM
+
+---
+
+En el siguiente video se puede apreciar el funcionamiento del PWM en el microcontrolador utilizando el PIN C10.
+
+<div align="center">
+    <video src="./IMG/IMG_5970.MP4" alt="Video de LEDs" controls width="600">
+        Tu navegador no soporta videos HTML5.
+    </video>
+</div>
+
+### Implementación de la técnica de multiplexación
+
+---
+
+Aún no se ha podido implementar la técnica de multiplexación por motivos de tiempo.
+
+
