@@ -1,0 +1,2 @@
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:687:20:CLOCK_SetIpSrc	24	static
+../board/board.c:25:6:BOARD_InitDebugConsole	16	static

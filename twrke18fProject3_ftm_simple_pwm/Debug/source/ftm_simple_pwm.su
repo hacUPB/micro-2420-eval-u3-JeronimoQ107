@@ -1,0 +1,14 @@
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_gpio.h:162:20:GPIO_PinWrite	32	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_gpio.h:223:24:GPIO_PinRead	16	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_ftm.h:671:20:FTM_StartTimer	24	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_ftm.h:963:20:FTM_SetSoftwareTrigger	16	static
+../source/ftm_simple_pwm.c:94:5:main	8	static
+../source/ftm_simple_pwm.c:110:6:InitPWM	16	static
+../source/ftm_simple_pwm.c:123:6:DeactivatePWM	8	static
+../source/ftm_simple_pwm.c:128:6:SetPWM	16	static
+../source/ftm_simple_pwm.c:137:6:state_machine_init	4	static
+../source/ftm_simple_pwm.c:141:6:state_init_function	8	static
+../source/ftm_simple_pwm.c:150:6:state_pwm_function	8	static
+../source/ftm_simple_pwm.c:162:6:state_pwm_adjustment_function	8	static
+../source/ftm_simple_pwm.c:186:6:ReadKeypad	16	static
+../source/ftm_simple_pwm.c:229:6:delay	16	static

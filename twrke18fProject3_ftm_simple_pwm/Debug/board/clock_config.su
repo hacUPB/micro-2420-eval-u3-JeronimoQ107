@@ -1,0 +1,12 @@
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:784:20:CLOCK_SetVlprModeSysClkConfig	24	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:804:20:CLOCK_SetRunModeSysClkConfig	24	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:824:20:CLOCK_SetHsrunModeSysClkConfig	24	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:844:20:CLOCK_GetCurSysClkConfig	24	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_clock.h:1373:20:CLOCK_SetXtal0Freq	16	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_smc.h:256:20:SMC_SetPowerModeProtection	16	static
+C:\Users\ASUS\Documents\MCUXpressoIDE_11.10.0_3148\workspace\twrke18fProject3_ftm_simple_pwm\drivers/fsl_smc.h:275:33:SMC_GetPowerModeState	16	static
+../board/clock_config.c:59:13:CLOCK_CONFIG_FircSafeConfig	32	static
+../board/clock_config.c:97:6:BOARD_InitBootClocks	8	static
+../board/clock_config.c:193:6:BOARD_BootClockVLPR	8	static
+../board/clock_config.c:309:6:BOARD_BootClockRUN	16	static
+../board/clock_config.c:433:6:BOARD_BootClockHSRUN	16	static
