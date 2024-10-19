@@ -456,6 +456,46 @@ Para el PWM se decidió utilizar el pin 11 del puerto C que fue configurado con 
 
 A continuación se hace un desglose de todas las funciones del programa para poder entender el funcionamiento del programa.
 
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">int main(void)</span>:
+
+Esta es la función principal que inicializa los pines de la tarjeta, configura el reloj y la consola de depuración. Luego, inicia la máquina de estados llamando a state_machine_init() y entra en un bucle infinito donde se lee el teclado matricial con ReadKeypad(), y se ejecuta la función correspondiente al estado actual de la máquina de estados.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void InitPWM(void)</span>
+
+Configura el temporizador FlexTimer (FTM) para generar una señal PWM. Usa la configuración por defecto del FTM y especifica el canal, el nivel lógico del PWM y la frecuencia de 24 kHz. Esta función se llama cuando se activa el PWM (estado inicial).
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void DeactivatePWM(void)</span>
+
+Desactiva el canal PWM configurado, deteniendo la salida de la señal PWM en el pin asignado. Se usa cuando se quiere apagar el PWM.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void SetPWM(uint8_t dutyCycle)</span>
+
+Actualiza el ciclo de trabajo del PWM (duty cycle). Primero, desactiva temporalmente el canal, luego ajusta el ciclo de trabajo según el valor proporcionado, y finalmente reactiva el canal PWM. Se usa para cambiar la intensidad del LED controlado por PWM.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void state_machine_init(void)</span>
+
+Inicializa la máquina de estados, estableciendo el estado inicial (STATE_INITIAL) y configurando el índice de entrada a 0. Es una función auxiliar que se llama al inicio del programa.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void state_init_function(void)</span>
+
+Es la función de estado inicial. Si la tecla presionada es 'A', activa el PWM llamando a InitPWM() y cambia el estado a STATE_PWM_ACTIVE. Si no, reinicia la entrada del ciclo de trabajo del PWM.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void state_pwm_function(void)</span>
+
+Es la función que se ejecuta cuando el PWM está activo. Si la tecla presionada es 'B', desactiva el PWM con DeactivatePWM() y vuelve al estado inicial. Si se presiona un número, prepara la entrada para ajustar el ciclo de trabajo y cambia al estado de ajuste de PWM.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void state_pwm_adjustment_function(void)</span> 
+
+Permite al usuario ajustar el ciclo de trabajo del PWM. Si se presiona un número, lo añade al valor actual de entrada. Si se presiona 'D', confirma el ciclo de trabajo y lo actualiza. Si se presiona 'C', se cancela la entrada y vuelve al estado activo del PWM.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">char ReadKeypad(void)</span>  
+
+Esta función lee el estado del teclado matricial (4x4). Recorre todas las filas y columnas del teclado para identificar si una tecla fue presionada, para hacer esto, escribe un 0 para la fila que se desee revisar y verifica que columna se encuentra en un 0 lógico, esta condición indica que la tecla ubicada en tal fila y columna se encuentra presionado. Además, realiza un proceso de eliminación de rebote (debouncing) para evitar lecturas incorrectas. Devuelve el valor de la tecla presionada.
+
+- <span style="background-color: rgba(0, 0, 0, 0.3); color: white; padding: 2px 5px; border-radius: 3px;">void delay(void)</span>  
+
+Es una función de retardo simple que introduce una pausa en la ejecución del código mediante un ciclo de NOPs (instrucciones de no operación). Se usa para permitir que las señales se estabilicen y evitar que el CPU se sature.
+
 
 
 
